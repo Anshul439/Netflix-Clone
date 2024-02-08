@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidata } from "../utils/validate";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -11,9 +13,36 @@ const Login = () => {
   const password = useRef(null);
 
   const handleButtonClick = () => {
-    const message = checkValidata(name.current.value, email.current.value, password.current.value);
+    const message = checkValidata(
+      name.current.value,
+      email.current.value,
+      password.current.value
+    );
     setErrorMessage(message);
-    console.log(message);
+    if (message) return;
+
+    if (isSignInForm) {
+      // Sign Up logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+          // ..
+        });
+    } else {
+      // Sign In logic
+    }
   };
 
   const toggleSignInForm = () => {
@@ -38,7 +67,7 @@ const Login = () => {
         </h1>
         {isSignInForm && (
           <input
-          ref={name}
+            ref={name}
             type="text"
             placeholder="Full Name"
             className="p-4 my-4 w-full bg-gray-700"
@@ -65,8 +94,8 @@ const Login = () => {
         </button>
         <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
           {isSignInForm
-            ? "New to Netflix? Sign in now."
-            : "Already registered? Sign up now."}
+            ? "Already registered? Sign in now."
+            : "New to Netflix? Sign up now."}
         </p>
       </form>
     </div>
