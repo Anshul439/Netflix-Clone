@@ -15,10 +15,7 @@ const Login = () => {
   const password = useRef(null);
 
   const handleButtonClick = () => {
-    const message = checkValidata(
-      email.current.value,
-      password.current.value
-    );
+    const message = checkValidata(email.current.value, password.current.value);
     setErrorMessage(message);
     console.log(message);
     if (message) return;
