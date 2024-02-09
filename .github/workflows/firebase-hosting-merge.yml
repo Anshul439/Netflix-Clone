@@ -18,3 +18,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NETFLIXGPT_A2047 }}'
           channelId: live
           projectId: netflixgpt-a2047
+          node-version: 20
