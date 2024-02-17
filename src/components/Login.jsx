@@ -23,7 +23,6 @@ const Login = () => {
   const handleButtonClick = () => {
     const message = checkValidata(email.current.value, password.current.value);
     setErrorMessage(message);
-    console.log(message);
     if (message) return;
 
     if (!isSignInForm) {
