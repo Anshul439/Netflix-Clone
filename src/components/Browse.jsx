@@ -3,8 +3,8 @@ import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import usePopularMovies from "../hooks/usePopularMovies";
-import useTopRated from "../hooks/useTopRated";
-import useUpcoming from "../hooks/useUpcoming";
+import useTopRatedMovies from "../hooks/useTopRatedMovies";
+import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import { useSelector } from "react-redux";
 import GptSearchPage from "./GptSearchPage";
 
@@ -13,8 +13,8 @@ const Browse = () => {
 
   useNowPlayingMovies();
   usePopularMovies();
-  useTopRated();
-  useUpcoming();
+  useTopRatedMovies();
+  useUpcomingMovies();
 
   return (
     <div>
