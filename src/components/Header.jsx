@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,8 @@ import { SUPPORTED_LANGUAGES } from "../utils/constants";
 import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
+  const [showSignOut, setShowSignOut] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
@@ -41,12 +43,24 @@ const Header = () => {
     });
   }, []);
 
+  const SignOutContainer = () => {
+    return (
+      <div className="absolute top-4 right-[10px] mt-12 ml-12 bg-black text-white border border-gray-600 px-4 py-2"><button onClick={handleSignOut} className="font-bold">
+      (Sign Out)
+    </button></div>
+    )
+  }
+
   const handleGptSearchClick = () => {
     dispatch(toggleGptSearchView());
   };
 
   const handleLanguageChange = (e) => {
     dispatch(changeLanguage(e.target.value));
+  };
+
+  const signOutButton = () => {
+    setShowSignOut(!showSignOut); // Set state to true to display the component
   };
 
   return (
@@ -76,10 +90,15 @@ const Header = () => {
           >
             {showGptSearch ? "Home" : "Search"}
           </button>
-          <img className="hidden md:block w-12 h-12" alt="usericon" src={user.photoURL} />
-          <button onClick={handleSignOut} className="font-bold text-white">
-            (Sign Out)
-          </button>
+          <div>
+          <img
+            onClick={signOutButton}
+            className="w-12 h-12 cursor-pointer mt-1"
+            alt="usericon"
+            src={user.photoURL}
+          />
+          {showSignOut && <SignOutContainer />}
+          </div>
         </div>
       )}
     </div>
