@@ -24,11 +24,11 @@ export const SUPPORTED_LANGUAGES = [
   },
   {
     identifier: "hindi",
-    name: "Hindi",
+    name: "हिंदी",
   },
   {
     identifier: "pbi",
-    name: "Punjabi",
+    name: "ਪੰਜਾਬੀ",
   },
 ];
 
