@@ -9,6 +9,8 @@ import useTvShows from "../hooks/useTvShows";
 import { useSelector } from "react-redux";
 import GptSearchPage from "./GptSearchPage";
 
+
+
 const Browse = () => {
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 

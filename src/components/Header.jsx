@@ -45,7 +45,7 @@ const Header = () => {
 
   const SignOutContainer = () => {
     return (
-      <div className="absolute top-4 right-[10px] mt-12 ml-12 bg-black text-white border border-gray-600 px-4 py-2"><button onClick={handleSignOut} className="font-bold">
+      <div className="absolute top-4 right-[10px] mt-9 md:mt-[52px] ml-12 bg-black text-white border border-gray-600 px-4 py-2"><button onClick={handleSignOut} className="font-bold">
       (Sign Out)
     </button></div>
     )
@@ -74,7 +74,7 @@ const Header = () => {
         <div className="flex p-2 justify-between">
           {showGptSearch && (
             <select
-              className="p-2 m-2 bg-gray-900 text-white"
+              className="p-2 m-2 bg-gray-900 text-white cursor-pointer"
               onChange={handleLanguageChange}
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
@@ -85,7 +85,7 @@ const Header = () => {
             </select>
           )}
           <button
-            className="py-2 px-4 mx-4 my-2 bg-red-700 text-white rounded-lg"
+            className="py-2 px-4 mx-4 my-2 bg-red-700 hover:bg-red-800 text-white rounded-lg"
             onClick={handleGptSearchClick}
           >
             {showGptSearch ? "Home" : "Search"}
